@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, UsePipes, Param, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
+import { UserDto } from './dto/user.dto';
 import { User } from './interfaces/user.interface';
 import { UserValidationPipe } from './pipes/user-validation.pipe';
 
@@ -10,8 +10,9 @@ export class UsersController {
 
   @Post()
   @UsePipes(new UserValidationPipe())
-  async create(@Body() createUserDto: CreateUserDto) {
-    this.usersService.create(createUserDto);
+
+  async create(@Body() userDto: Promise<any>) {
+    this.usersService.create(userDto);
   }
 
   @Get()
@@ -20,7 +21,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findbyId(@Param('id') id): Promise<CreateUserDto> {
+  async findbyId(@Param('id') id): Promise<UserDto> {
     return this.usersService.findOne(id);
   }
 }
