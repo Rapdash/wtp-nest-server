@@ -1,19 +1,13 @@
 // Packages
-import { Module, MiddlewareConsumer } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 
-// Middleware
-import { LoggerMiddleware } from './middleware/logger.middleware';
+// Middleware (not currently using any)
 
 // Modules
 import { UsersModule } from './users/users.module';
+import { UsersController } from './users/users.controller';
 
 @Module({
   imports: [UsersModule],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes('users');
-  }
-}
+export class AppModule {}
