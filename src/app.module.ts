@@ -11,6 +11,9 @@ import { MONGO_URI } from './config';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [MongooseModule.forRoot(MONGO_URI), UsersModule],
+  imports: [
+    MongooseModule.forRoot(process.env.MONGO_URI || MONGO_URI),
+    UsersModule,
+  ],
 })
 export class AppModule {}
