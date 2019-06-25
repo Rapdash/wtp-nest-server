@@ -1,17 +1,15 @@
-import { Injectable, Get } from '@nestjs/common';
-
-interface User {
-  fullName: string;
-  email: string;
-  passwordHash: string;
-}
+import { Injectable } from '@nestjs/common';
+import { User } from './interfaces/user.interface';
 
 @Injectable()
 export class UsersService {
-  @Get()
-  findAll(): User[]  {
-    return [
-      { fullName: 'Fritz Johnson', email: 'fritzj96@gmail.com', passwordHash: 'skafj;lkdjgksal' },
-    ];
+  private readonly users: User[] = [];
+
+  create(user: User) {
+    this.users.push(user);
+  }
+
+  findAll(): User[] {
+    return this.users;
   }
 }
