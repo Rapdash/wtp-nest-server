@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, UsePipes, Param, ParseIntPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/user.dto';
+import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './interfaces/user.interface';
 import { UserValidationPipe } from './pipes/user-validation.pipe';
 
@@ -20,7 +20,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findOne(@Param('id', new ParseIntPipe()) id) {
-    return await this.usersService.findOne(id);
+  async findbyId(@Param('id') id): Promise<CreateUserDto> {
+    return this.usersService.findOne(id);
   }
 }

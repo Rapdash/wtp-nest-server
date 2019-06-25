@@ -8,5 +8,5 @@ export class CreateUserDto {
   readonly email: string;
 
   @IsString()
-  readonly passwordHash: string;
+  readonly passwordHash?: string;
 }
