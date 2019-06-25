@@ -1,5 +1,6 @@
 // Packages
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 
 // Middleware (not currently using any)
 
@@ -7,6 +8,6 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [UsersModule],
+  imports: [MongooseModule.forRoot(process.env.MONGOOSE_URI), UsersModule],
 })
 export class AppModule {}

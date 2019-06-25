@@ -12,4 +12,8 @@ export class UsersService {
   findAll(): User[] {
     return this.users;
   }
+
+  findOne(id): User {
+    return UserModel.findOne(id)
+  }
 }
