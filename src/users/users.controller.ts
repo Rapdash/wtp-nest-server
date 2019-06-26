@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { UserDto } from './dto/user.dto';
 import { User } from './interfaces/user.interface';
 import { UserValidationPipe } from './pipes/user-validation.pipe';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -10,8 +11,8 @@ export class UsersController {
 
   @Post()
   @UsePipes(new UserValidationPipe())
-  async create(@Body() userDto: Promise<UserBodyDto>) {
-    this.usersService.create(userDto);
+  async create(@Body() createUserDto: CreateUserDto ) {
+    this.usersService.create(createUserDto);
   }
 
   @Get()
