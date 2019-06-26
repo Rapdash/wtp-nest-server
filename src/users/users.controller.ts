@@ -10,8 +10,7 @@ export class UsersController {
 
   @Post()
   @UsePipes(new UserValidationPipe())
-
-  async create(@Body() userDto: Promise<any>) {
+  async create(@Body() userDto: Promise<UserBodyDto>) {
     this.usersService.create(userDto);
   }
 
