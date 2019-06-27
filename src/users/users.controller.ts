@@ -12,16 +12,21 @@ export class UsersController {
   @Post()
   @UsePipes(new UserValidationPipe())
   async create(@Body() createUserDto: CreateUserDto ) {
-    this.usersService.create(createUserDto);
+    const responseData = await this.usersService.create(createUserDto);
+    return { responseData };
   }
 
   @Get()
-  async findAll(): Promise<User[]> {
-    return this.usersService.findAll();
+  async findAll(): Promise<UserDto[]> {
+    const usersDocArray = await this.usersService.findAll();
+    return usersDocArray.map(({ email, fullName }) => {
+      return { email, fullName };
+    });
   }
 
   @Get(':id')
   async findbyId(@Param('id') id): Promise<UserDto> {
-    return this.usersService.findOne(id);
+    const { email, fullName } = await this.usersService.findOne(id);
+    return { email, fullName };
   }
 }
